@@ -1,6 +1,10 @@
 package com.root.app.langs.ex1;
 
+import java.util.Scanner;
+
 public class PersonView {
+	
+	Scanner
 	
 	public void view(Person [] persons) {
 		System.out.println("이름"+"\t"+"\t"+"전화번호"+"\t"+"\t"+"이메일"+"\t"+"\t"+"생년월일");
@@ -14,5 +18,7 @@ public class PersonView {
 		
 		
 	}
+	
+
 
 }

@@ -1,8 +1,13 @@
 package com.root.app.langs.ex1;
 
+import java.util.Scanner;
+
 public class PersonInfo {
 	
 	private String data;
+	
+	private Scanner sc;
+	
 	
 	public PersonInfo() {
 		this.data = "iu, 010-1234-5678, iu@naver.com, 93-05-05,";
@@ -41,6 +46,11 @@ public class PersonInfo {
 		return persons;
 		
 		
+		
+	}
+	
+	public void find(Person [] persons) {
+		System.out.println("이름을 입력하세요");
 		
 	}
 	
