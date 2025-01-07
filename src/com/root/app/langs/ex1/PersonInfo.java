@@ -93,6 +93,31 @@ public class PersonInfo {
 	}
 	
 	
+	public Person [] delete(Person [] persons, Scanner sc) {
+		System.out.println("삭제할 정보의 이름을 입력하세요");
+		String select = sc.next();
+		Person [] copy = new Person [persons.length-1];
+		
+		for(int i = 0; i < persons.length; i++) {
+			if(persons[i].getName().equals(select)) {
+				int find = i;
+				int idx = 0;
+				for(int j = 0; j < persons.length; j++) {
+					if(i == j) {
+						continue;
+					}
+					copy[idx] = persons[j];
+					idx++;
+				}
+			}
+		}
+		
+		
+		return copy;
+	}
+	
+	
+	
 	
 	
 	

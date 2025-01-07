@@ -41,6 +41,7 @@ public class PersonController {
 				persons = pi.add(persons, sc);
 			}else if(in == 5) { 
 				System.out.println("삭제");
+				persons = pi.delete(persons, sc);
 			}else if(in == 6) {
 				System.out.println("종료합니다");
 				check = !check;
