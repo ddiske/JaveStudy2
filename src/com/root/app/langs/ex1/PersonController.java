@@ -19,19 +19,26 @@ public class PersonController {
 		
 		System.out.println("1.주소록 초기화 2.주소록 출력 3.검색 4.추가 5.삭제 6.종료");
 		boolean check = false;
+		Person [] persons = null;
 		
 		while(check = true) {
 			int in = sc.nextInt();
 			if(in == 1) {
-				Person [] persons = pi.init();
+				persons = pi.init();
 				System.out.println("정보를 초기화합니다");
 			}else if(in == 2) {
 				System.out.println("전부 출력합니다");
-				pv.view(pi.init());
+				pv.view(persons);
 			}else if(in == 3) {
-				System.out.println("-검색- 이름을 입력해주세요");
+				Person person = pi.findByName(persons, sc);
+				if(person != null) {
+					pv.view(person);					
+				}else {
+					System.out.println("검색 결과가 없습니다");
+				}
 			}else if(in == 4) {
 				System.out.println("추가");
+				persons = pi.add(persons, sc);
 			}else if(in == 5) { 
 				System.out.println("삭제");
 			}else if(in == 6) {
