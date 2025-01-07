@@ -7,6 +7,12 @@ public class Study3StringBuffer1 {
 		str = str + "b";
 		System.out.println(str);
 		
+		StringBuffer sb = new StringBuffer();
+		sb.append("a");
+		sb.append("b");
+		System.out.println(sb);
+		
+		str = sb.toString();
 		
 
 	}
