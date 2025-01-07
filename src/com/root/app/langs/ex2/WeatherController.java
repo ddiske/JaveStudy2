@@ -37,9 +37,9 @@ public class WeatherController {
 					weatherView.view("검색 결과가 없습니다");
 				}
 			}else if(select == 4) {
-				
+				dtos = weatherInfo.addInfo(dtos, sc);
 			}else if(select == 5) {
-				
+				dtos = weatherInfo.delete(dtos, sc);
 			}else {
 				System.out.println("프로그램이 종료 됩니다");
 				break;

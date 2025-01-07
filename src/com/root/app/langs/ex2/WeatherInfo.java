@@ -101,6 +101,60 @@ public class WeatherInfo {
 	}
 	
 	
+	public WeatherDTO [] addInfo(WeatherDTO [] dtos, Scanner sc) {
+		WeatherDTO addinfo = new WeatherDTO();
+		WeatherDTO [] addinfos = new WeatherDTO[dtos.length+1];
+		System.out.println("정보를 추가합니다");
+		for(int i = 0; i < dtos.length; i++) {
+			addinfos[i] = dtos[i];
+		}
+		
+		
+		System.out.println("도시 입력");
+		addinfo.setCity(sc.next());
+		System.out.println("온도 입력");
+		addinfo.setGion(sc.nextInt());
+		System.out.println("습도 입력");
+		addinfo.setHumidity(sc.nextDouble());
+		System.out.println("상태 입력");
+		addinfo.setStatus(sc.next());
+		
+		
+		addinfos[dtos.length] = addinfo;
+		
+		return addinfos;
+	}
+	
+	public WeatherDTO [] delete(WeatherDTO [] dtos, Scanner sc) {
+		System.out.println("도시를 입력하세요");
+		String select = sc.next();
+		WeatherDTO [] copy = new WeatherDTO[dtos.length-1];
+		
+		for(int i = 0; i < dtos.length; i++) {
+			if(dtos[i].getCity().equals(select)) {
+				int find = i;
+				int idx = 0;
+				for(int j = 0; j < dtos.length; j++) {
+					if(i == j) {
+						continue;
+					}
+					copy[idx] = dtos[j];
+					idx++;
+				}
+			}
+		}		
+		
+		
+		
+		
+		return copy;
+	}
+	
+	
+	
+	
+	
+	
 	
 
 }
