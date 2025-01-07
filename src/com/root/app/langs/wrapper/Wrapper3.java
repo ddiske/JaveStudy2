@@ -25,9 +25,10 @@ public class Wrapper3 {
 //		System.out.println(s);
 //		System.out.println(a);
 		
+//		int a = Integer.valueOf(jumin.substring(0, 1))*2;
+//		int b = Integer.valueOf(jumin.substring(1, 2))*3;
+
 		jumin = jumin.replace("-", "");
-		int a = Integer.valueOf(jumin.substring(0, 1))*2;
-		int b = Integer.valueOf(jumin.substring(1, 2))*3;
 		
 		int idx = 0;
 		int sum = 0;
@@ -35,18 +36,14 @@ public class Wrapper3 {
 		
 		for(int i = 0; i < jumin.toCharArray().length-1; i++) {
 			
-			if(j < 10) {
-				idx = Integer.valueOf(jumin.substring(i, i+1))*(j);
-				sum = sum + idx;
-				
-				j++;
-			}else if(j >= 10) {
+			if(j == 10) {
 				j = 2;
+			}
+			
 				idx = Integer.valueOf(jumin.substring(i, i+1))*(j);
 				sum = sum + idx;
 				
 				j++;
-			}
 		}
 		
 		int result = 11 - (sum % 11);
