@@ -157,7 +157,6 @@ public class WeatherInfo {
 		
 		for(int i = 0; i < dtos.length; i++) {
 			if(dtos[i].getCity().equals(select)) {
-				int find = i;
 				int idx = 0;
 				for(int j = 0; j < dtos.length; j++) {
 					if(i == j) {
