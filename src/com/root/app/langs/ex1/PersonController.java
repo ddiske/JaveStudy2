@@ -20,7 +20,6 @@ public class PersonController {
 		
 		System.out.println("1.주소록 초기화 2.주소록 출력 3.검색 4.추가 5.삭제 6.종료");
 		boolean check = false;
-		Person [] persons = null;
 		Person person = null;
 		
 		while(check = true) {
