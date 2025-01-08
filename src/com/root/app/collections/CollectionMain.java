@@ -14,6 +14,23 @@ public class CollectionMain {
 		ss.add(6);
 		ss.info();
 		
+		System.out.println("=======");
+		
+		System.out.println(ss.pop());
+		
+		System.out.println("=======");
+		
+		ss.info();
+		
+		System.out.println("==========");
+		
+		ss.set(1);
+		ss.set(3);
+		ss.set(5);
+		ss.set(7);
+		ss.set(9);
+		
+		ss.info();
 
 	}
 
