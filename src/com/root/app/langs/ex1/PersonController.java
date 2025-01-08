@@ -1,5 +1,6 @@
 package com.root.app.langs.ex1;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PersonController {
@@ -15,33 +16,34 @@ public class PersonController {
 		Scanner sc = new Scanner(System.in);
 		PersonView pv = new PersonView();
 		PersonInfo pi = new PersonInfo();
-		
+		ArrayList<Person> ar = null;
 		
 		System.out.println("1.주소록 초기화 2.주소록 출력 3.검색 4.추가 5.삭제 6.종료");
 		boolean check = false;
 		Person [] persons = null;
+		Person person = null;
 		
 		while(check = true) {
 			int in = sc.nextInt();
 			if(in == 1) {
-				persons = pi.init();
+				ar = pi.init();
 				System.out.println("정보를 초기화합니다");
 			}else if(in == 2) {
 				System.out.println("전부 출력합니다");
-				pv.view(persons);
+				pv.view(ar);
 			}else if(in == 3) {
-				Person person = pi.findByName(persons, sc);
-				if(person != null) {
+				person = pi.findByName(ar, sc);
+				if(ar != null) {
 					pv.view(person);					
 				}else {
 					System.out.println("검색 결과가 없습니다");
 				}
 			}else if(in == 4) {
 				System.out.println("추가");
-				persons = pi.add(persons, sc);
+				pi.add(ar, sc);
 			}else if(in == 5) { 
 				System.out.println("삭제");
-				persons = pi.delete(persons, sc);
+				pi.delete(ar, sc);
 			}else if(in == 6) {
 				System.out.println("종료합니다");
 				check = !check;

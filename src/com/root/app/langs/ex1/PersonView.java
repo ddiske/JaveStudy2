@@ -1,6 +1,6 @@
 package com.root.app.langs.ex1;
 
-
+import java.util.ArrayList;
 
 public class PersonView {
 	
@@ -15,13 +15,13 @@ public class PersonView {
 		
 	}
 	
-	public void view(Person [] persons) {
+	public void view(ArrayList<Person> ar) {
 		
-		for(int i = 0; i < persons.length; i++) {
-			System.out.print(persons[i].getName().trim() + "\t");
-			System.out.print(persons[i].getPhone().trim()+ "\t");
-			System.out.print(persons[i].getEmail().trim()+ "\t");
-			System.out.print(persons[i].getBirth().trim()+ "\n");
+		for(int i = 0; i < ar.size(); i++) {
+			System.out.print(ar.get(i).getName().trim() + "\t");
+			System.out.print(ar.get(i).getPhone().trim()+ "\t");
+			System.out.print(ar.get(i).getEmail().trim()+ "\t");
+			System.out.print(ar.get(i).getBirth().trim()+ "\n");
 			
 		}
 		

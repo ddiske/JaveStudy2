@@ -1,6 +1,8 @@
 package com.root.app.langs.ex1;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class PersonInfo {
 	
@@ -19,101 +21,79 @@ public class PersonInfo {
 //	메서드명 init
 //	data의 변수의 값을 파싱
 	
-	public Person [] init() {
-		String [] datas = this.data.split(",");
+	public ArrayList<Person> init() {
 		
-		
+		StringTokenizer st = new StringTokenizer(this.data, ",");
 		
 		//Person 객체에 데이터를 대입
 
-		Person [] persons = new Person[datas.length/4];
-		int idx = 0;
-		for(int i = 0; i < datas.length; i++) {
-
+		ArrayList<Person> ar = new ArrayList<>();
+		
+		while(st.hasMoreTokens()) {
 			Person person = new Person();
-			
-			person.setName(datas[i]);
-			person.setPhone(datas[++i]);
-			person.setEmail(datas[++i]);
-			person.setBirth(datas[++i]);
-			
-			persons[idx] = person;
-			idx++;
+			person.setName(st.nextToken().trim());
+			person.setPhone(st.nextToken().trim());
+			person.setEmail(st.nextToken().trim());
+			person.setBirth(st.nextToken().trim());
+			ar.add(person);
 		}
 		
-		
 		//Person 객체들을 리턴
-		return persons;
 		
+		return ar;
 		
 		
 	}
 	
-	public Person findByName(Person [] persons, Scanner sc) {
+	public Person findByName(ArrayList<Person> ar, Scanner sc) {
 		System.out.println("이름을 입력하세요");
 		String find = sc.next();
 		
-		
-		for(int i = 0; i < persons.length; i++) {
-			if(persons[i].getName().equals(find)) {
-				return persons[i];
+		for(int i = 0; i < ar.size(); i++) {
+			if(ar.get(i).getName().equals(find)) {
+				
+				return ar.get(i);
+				
 			}
 		}
-		
-		
-		
 		
 		return null;
 	}
 	
 	
-	public Person [] add(Person [] persons, Scanner sc) {
-		Person [] adds = new Person [persons.length+1];
-		Person addpersons = new Person();
+	public void add(ArrayList<Person> ar, Scanner sc) {
+		Person person = new Person();
 		
-		for(int i = 0; i < persons.length; i++) {
-			adds[i] = persons[i];
-		}
+		System.out.println("이름 입력");
+		person.setName(sc.next());
 		
-		System.out.println("이름");
-		addpersons.setName(sc.next());
-		System.out.println("전화번호");
-		addpersons.setPhone(sc.next());
-		System.out.println("이메일");
-		addpersons.setEmail(sc.next());
-		System.out.println("생년월일");
-		addpersons.setBirth(sc.next());
+		System.out.println("번호 입력");
+		person.setPhone(sc.next());
 		
-		adds[adds.length-1] = addpersons;
+		System.out.println("이메일 입력");
+		person.setEmail(sc.next());
 		
+		System.out.println("생년월일 입력");
+		person.setBirth(sc.next());
 		
+		ar.add(person);
 		
-		
-		return adds;
 	}
 	
 	
-	public Person [] delete(Person [] persons, Scanner sc) {
+	public void delete(ArrayList<Person> ar, Scanner sc) {
 		System.out.println("삭제할 정보의 이름을 입력하세요");
 		String select = sc.next();
-		Person [] copy = new Person [persons.length-1];
 		
-		for(int i = 0; i < persons.length; i++) {
-			if(persons[i].getName().equals(select)) {
-				int find = i;
-				int idx = 0;
-				for(int j = 0; j < persons.length; j++) {
-					if(i == j) {
-						continue;
-					}
-					copy[idx] = persons[j];
-					idx++;
-				}
+		
+		for(int i = 0; i < ar.size(); i++) {
+			if(ar.get(i).getName().equals(select)) {
+				
+				ar.remove(i);
+				
 			}
 		}
 		
-		
-		return copy;
 	}
 	
 	
