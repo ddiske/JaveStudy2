@@ -25,8 +25,12 @@ public class TestMain {
 		ar2.add(medic);
 		
 		UnitView view = new UnitView();
-		view.view2(ar2);
 		
+		view.view(ar);
+		view.view(ar2);
+		
+//		view.view2(ar);
+		view.view2(ar2);
 		
 
 	}
