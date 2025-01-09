@@ -19,11 +19,26 @@ public class IoMain3 {
 		System.out.println("==========");
 		
 		//향상된 for문
+//		for(String s:list) {
+//			if(s.contains(".")) {
+//				System.out.println(s);
+//			}
+//		}
+		
 		for(String s:list) {
-			if(s.contains(".")) {
-				System.out.println(s);
+			File file1 = new File(file, s);
+			if(file1.isDirectory()) {
+				System.out.print(s);
+				System.out.println("\t폴더");
+			}else if(file1. isFile()) {
+				System.out.print(s);
+				System.out.println("\t파일");
+			}else {
+				System.out.print(s);
+				System.out.println("\t모름");
 			}
 		}
+		
 		
 		System.out.println("==========");
 		
