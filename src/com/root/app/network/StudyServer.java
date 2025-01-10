@@ -24,36 +24,50 @@ public class StudyServer {
 		Socket socket = ss.accept();
 		System.out.println("클라이언트와 연결 성공");
 		
+		
+		
 		InputStream is = socket.getInputStream();
 		InputStreamReader ir = new InputStreamReader(is);
 		BufferedReader br = new BufferedReader(ir);
-		
-		String message = br.readLine();
-		
-		System.out.println("Client : " + message);
-		
-		//==================================================
 		
 		OutputStream os = socket.getOutputStream();
 		OutputStreamWriter ow = new OutputStreamWriter(os);
 		BufferedWriter bw = new BufferedWriter(ow);
 		
-		System.out.println("서버로 보낼 메세지 입력");
-		String re = sc.next();		
 		
-		bw.write(re);
-		bw.write("\r\n");
-		bw.flush();
+		boolean check = true;
 		
-		bw.close();
-		ow.close();
-		os.close();
-		br.close();
-		ir.close();
-		is.close();
-		socket.close();
-		ss.close();
-		sc.close();
+		while(check) {
+			
+			String message = br.readLine();
+			
+			System.out.println("Client : " + message);
+			
+			//==================================================
+			
+			
+			System.out.println("클라이언트에 보낼 메세지 입력");
+			String re = sc.next();		
+			
+			bw.write(re);
+			bw.write("\r\n");
+			bw.flush();
+			
+			if(message.equalsIgnoreCase("end") || re.equalsIgnoreCase("end")) {
+				check = !check;
+				bw.close();
+				ow.close();
+				os.close();
+				br.close();
+				ir.close();
+				is.close();
+				socket.close();
+				ss.close();
+				sc.close();
+				break;
+			}
+			
+		}
 		
 
 	}
