@@ -36,23 +36,38 @@ public class ServerMain {
 		OutputStreamWriter ow = new OutputStreamWriter(os);
 		BufferedWriter bw = new BufferedWriter(ow);
 		
-		File file = new File("C:\\test", "sample.txt");
-		FileReader fr = new FileReader(file);
-		BufferedReader fbr = new BufferedReader(fr);
-		StringBuffer sb = new StringBuffer();
-		
 		while(true) {
-			if(br.readLine().equals('1')) {
-				while(sb.append()) {
-					sb.append(fbr.readLine());
-					sb.append(",");
-				}
-				String data = sb.toString().replace("*", ",").trim();
+			
+			String message = br.readLine();
+			
+			if(message.equals("1")) {
 				
+				String data = new String();
+				File file = new File("C:\\test", "sample.txt");
+				FileReader fr = new FileReader(file);
+				BufferedReader fbr = new BufferedReader(fr);
+				StringBuffer sb = new StringBuffer();
+				
+				
+				while(data != null) {
+					data = fbr.readLine();
+					
+					if(data == null) {
+						break;
+					}
+					sb.append(data);
+					sb.append(",");
+					
+				}
+				data = sb.toString().replace("*", ",").trim();
+				System.out.println(data);
+				bw.write(data);
+				bw.write("\r\n");
+				bw.flush();
+				break;
 			}
+		
 		}
-		
-		
 
 	}
 
