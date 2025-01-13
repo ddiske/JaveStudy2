@@ -1,18 +1,23 @@
 package com.root.app.network.ex.client;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class WeatherController {
 	
 	
 	
-	public void start(String message, String data) {
+	public String start(String data) {
 //		1. 날씨 정보 출력
 //		2. 종료
+		Scanner sc = new Scanner(System.in);
 		
 		
-//		while(true) {
+		while(true) {
+			System.out.println("1.날씨 정보 출력 2.종료");
+		String message = sc.next();
+		
 			if(message.equals("1")) {
 				ArrayList<WeatherDTO> ar = new ArrayList<>();
 				StringTokenizer st = new StringTokenizer(data, ",");
@@ -44,8 +49,8 @@ public class WeatherController {
 				System.out.println("다시 입력하세요");
 			}
 			
-//		}
-		
+			return message;
+		}
 		
 		
 		

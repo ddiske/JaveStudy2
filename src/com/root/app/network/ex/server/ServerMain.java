@@ -60,11 +60,11 @@ public class ServerMain {
 					
 				}
 				data = sb.toString().replace("*", ",").trim();
-				System.out.println(data);
-				bw.write(data);
-				bw.write("\r\n");
+				
+				bw.write(data+"\r\n");
+				//bw.write("\r\n");
 				bw.flush();
-				break;
+				
 			}
 		
 		}
