@@ -17,7 +17,7 @@ public class ClientMain {
 		
 		System.out.println("Client Start");
 		Scanner sc = new Scanner(System.in);
-		Socket socket = new Socket("192.168.0.196", 8282);
+		Socket socket = new Socket("192.168.200.54", 8282);//127.0.0.1 이나 localhost는 자동으로 내 컴퓨터ip와 연결
 		System.out.println("서버와 접속 성공");
 		
 		OutputStream os = socket.getOutputStream();
@@ -34,10 +34,11 @@ public class ClientMain {
 			String message = sc.next();
 			String data = null;
 			
+			bw.write(message);
+			bw.write("\r\n");
+			bw.flush();
+			
 			if(message.equals("1")) {
-				bw.write(message);
-				bw.write("\r\n");
-				bw.flush();
 				
 				data = br.readLine();
 				

@@ -18,7 +18,7 @@ public class StudyClient {
 //		java ip+port -> socket
 //		서버에 접속
 		Scanner sc = new Scanner(System.in);
-		Socket socket = new Socket("192.168.0.196", 8282);
+		Socket socket = new Socket("192.168.200.54", 8282);
 		System.out.println("서버와 접속 성공");
 		
 		OutputStream os = socket.getOutputStream();
