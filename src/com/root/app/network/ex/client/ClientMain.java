@@ -1,55 +1,25 @@
 package com.root.app.network.ex.client;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.net.Socket;
-import java.net.UnknownHostException;
-import java.util.Scanner;
 
 public class ClientMain {
 
-	public static void main(String[] args) throws UnknownHostException, IOException {
+	public static void main(String[] args) {
 		
 		System.out.println("Client Start");
 		
-		Socket socket = new Socket("local host", 8282);//127.0.0.1 이나 localhost는 자동으로 내 컴퓨터ip와 연결
-		System.out.println("서버와 접속 성공");
-		
-		OutputStream os = socket.getOutputStream();
-		OutputStreamWriter ow = new OutputStreamWriter(os);
-		BufferedWriter bw = new BufferedWriter(ow);
-		
-		InputStream is = socket.getInputStream();
-		InputStreamReader ir = new InputStreamReader(is);
-		BufferedReader br = new BufferedReader(ir);
-		
-		WeatherController wc = new WeatherController();
+		MainController mainController = new MainController();
+		try {
+			mainController.mainStart();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
-		String data = null;
+		
+		
+		System.out.println("Client 종료");
 
-		data = br.readLine();
-		wc.start(data);
-		
-//		if(wc.start(data).equals("1")) {
-//			
-//		}
-//		
-		
-		
-		System.out.println("서버와 연결을 끊습니다");
-		br.close();
-		ir.close();
-		is.close();
-		bw.close();
-		ow.close();
-		os.close();
-		socket.close();
 
 	}
 
