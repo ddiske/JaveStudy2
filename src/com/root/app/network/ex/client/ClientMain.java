@@ -17,7 +17,7 @@ public class ClientMain {
 		
 		System.out.println("Client Start");
 		
-		Socket socket = new Socket("192.168.200.54", 8282);//127.0.0.1 이나 localhost는 자동으로 내 컴퓨터ip와 연결
+		Socket socket = new Socket("local host", 8282);//127.0.0.1 이나 localhost는 자동으로 내 컴퓨터ip와 연결
 		System.out.println("서버와 접속 성공");
 		
 		OutputStream os = socket.getOutputStream();
