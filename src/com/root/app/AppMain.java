@@ -1,7 +1,6 @@
 package com.root.app;
 
-import com.root.app.departments.DepartmentDAO;
-import com.root.app.locations.LocationDAO;
+
 
 
 public class AppMain {
@@ -12,19 +11,12 @@ public class AppMain {
 		
 //		객체 생성
 //		클래스명 변수명 = new 생성자();
-		DepartmentDAO departmentDAO = new DepartmentDAO();
-		LocationDAO locationDAO = new LocationDAO();
-		
+		FrontController frontController = new FrontController();
 		
 //		멤버 사용
 //		참조변수(객체를 갖고 있는 주소를 담은 변수)명, 멤버명
 		
-		try {
-			locationDAO.getList();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		frontController.start();
 		
 		
 		

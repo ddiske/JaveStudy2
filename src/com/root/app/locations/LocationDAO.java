@@ -32,7 +32,8 @@ public class LocationDAO {
 	
 	
 	
-	public void getDetail() throws Exception {
+	public LocationDTO getDetail() throws Exception {
+		LocationDTO locationDTO = null;
 		
 		Connection connection = DBConnection.getConnection();
 		
@@ -43,17 +44,22 @@ public class LocationDAO {
 		ResultSet rs = st.executeQuery();
 		
 		if(rs.next()) {
-			System.out.println(rs.getString("CITY"));
-			
-		}else {
-			System.out.println("데이터 없음");
+			locationDTO = new LocationDTO();
+			locationDTO.setLocation_id(rs.getInt("LOCATION_ID"));
+			locationDTO.setStreet_address(rs.getString("STREET_ADDRESS"));
+			locationDTO.setPostal_code(rs.getString("POSTAL_CODE"));
+			locationDTO.setCity(rs.getString("CITY"));
+			locationDTO.setState_province(rs.getString("STATE_PROVINCE"));
+			locationDTO.setCountry_id(rs.getString("COUNTRY_ID"));
 		}
+		
 		
 //		rs.close();
 //		st.close();
 //		connection.close();
 		DBConnection.disConnect(rs, st, connection);
 		
+		return locationDTO;
 	}
 	
 	
