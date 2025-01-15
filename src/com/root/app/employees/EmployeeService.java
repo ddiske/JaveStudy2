@@ -32,7 +32,6 @@ public class EmployeeService {
 	
 	public void getInfo() throws Exception {
 		Map<String, Object> map = employeeDAO.getInfo();
-		
 		Iterator<String> keys = map.keySet().iterator();
 		
 //		System.out.println(keys.hasNext());
@@ -42,6 +41,8 @@ public class EmployeeService {
 			System.out.println(map.get(keys.next()));
 			
 		}
+		
+		
 		
 	}
 

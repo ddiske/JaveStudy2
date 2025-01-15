@@ -18,18 +18,24 @@ public class EmployeeDAO {
 		// 부서별, 부서번호, 평균월급, 사원수
 		Connection connection = DBConnection.getConnection();
 		String sql = "SELECT AVG(SALARY), COUNT(EMPLOYEE_ID)"
-				+ "FROM EMPLOYEES";
-//				+ "GROUP BY DEPARTMENT_ID\r\n"
-//				+ "ORDER BY DEPARTMENT_ID ASC";
+				+ "FROM EMPLOYEES"
+				+ "GROUP BY DEPARTMENT_ID\r\n"
+				+ "ORDER BY DEPARTMENT_ID ASC";
 		
 		PreparedStatement st = connection.prepareStatement(sql);
 		
 		ResultSet rs = st.executeQuery();
 		
-		rs.next();
+		List<Map<String, Object>> ar = new ArrayList();
+		
+		while(rs.next()) {
 //		map.put("department_id", rs.getInt("DEPARTMENT_ID"));
-		map.put("avg", rs.getDouble("AVG(SALARY)"));
-		map.put("count", rs.getInt(2));
+			map = new HashMap<>();
+			map.put("avg", rs.getDouble("AVG(SALARY)"));
+			map.put("count", rs.getInt(2));
+			ar.add(map);
+		}
+		DBConnection.disConnect(rs, st, connection);
 		
 		return map;
 	}
