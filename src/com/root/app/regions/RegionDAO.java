@@ -12,7 +12,7 @@ public class RegionDAO {
 	
 	public List<RegionDTO> getList() throws Exception {
 		Connection connection = DBConnection.getConnection();
-		String sql = "SELECT * FROM REGIONS ORDER BY REGION_ID asc";
+		String sql = "SELECT * FROM REGIONS ORDER BY REGION_ID ASC";
 		PreparedStatement st = connection.prepareStatement(sql);
 		ResultSet rs = st.executeQuery();
 		

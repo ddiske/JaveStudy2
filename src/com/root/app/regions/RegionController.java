@@ -1,8 +1,18 @@
 package com.root.app.regions;
 
+import java.util.List;
 import java.util.Scanner;
 
+
 public class RegionController {
+	
+	private RegionService regionService;
+	private RegionView regionView;
+	
+	public RegionController() {
+		regionService = new RegionService();
+		regionView = new RegionView();
+	}
 	
 	public void start() throws Exception {
 		
@@ -16,16 +26,16 @@ public class RegionController {
 			
 			int select = sc.nextInt();
 			
-			RegionDAO regionDAO = new RegionDAO();
-			RegionDTO regionDTO = new RegionDTO();
-			RegionView regionView = new RegionView();
 			
 			if(select == 1) {
-				regionDAO.getList();
+				List<RegionDTO> ar = regionService.getList();
+				regionView.view(ar);
 			}else if(select == 2) {
-//				regionDTO = regionDAO.getDetail();
+				RegionDTO regionDTO = regionService.getDetail(sc);
+				
 				if(regionDTO != null) {
 					regionView.view(regionDTO);
+					
 				}else {
 					regionView.view("없는 대륙입니다");
 				}
