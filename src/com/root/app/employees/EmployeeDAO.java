@@ -4,11 +4,36 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.root.app.utils.DBConnection;
 
 public class EmployeeDAO {
+	
+	public Map<String, Object> getInfo() throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		
+		// 부서별, 부서번호, 평균월급, 사원수
+		Connection connection = DBConnection.getConnection();
+		String sql = "SELECT AVG(SALARY), COUNT(EMPLOYEE_ID)"
+				+ "FROM EMPLOYEES";
+//				+ "GROUP BY DEPARTMENT_ID\r\n"
+//				+ "ORDER BY DEPARTMENT_ID ASC";
+		
+		PreparedStatement st = connection.prepareStatement(sql);
+		
+		ResultSet rs = st.executeQuery();
+		
+		rs.next();
+//		map.put("department_id", rs.getInt("DEPARTMENT_ID"));
+		map.put("avg", rs.getDouble("AVG(SALARY)"));
+		map.put("count", rs.getInt(2));
+		
+		return map;
+	}
+	
 	
 	public List<EmployeeDTO> getList(String search) throws Exception {
 		
@@ -17,7 +42,7 @@ public class EmployeeDAO {
 		Connection connection = DBConnection.getConnection();
 		
 		String sql = "SELECT EMPLOYEE_ID, LAST_NAME, JOB_ID FROM EMPLOYEES"
-				+ " WHERE LAST_NAME LIKE '%?%'";
+				+ " WHERE LAST_NAME LIKE '%'||?||'%'";
 		
 		PreparedStatement st = connection.prepareStatement(sql);
 		
