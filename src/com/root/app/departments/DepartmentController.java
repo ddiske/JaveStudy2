@@ -1,14 +1,15 @@
 package com.root.app.departments;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class DepartmentController {
 	
-	private DepartmentDAO departmentDAO;
+	private DepartmentService departmentService;
 	private DepartmentView departmentView;
 	
 	public DepartmentController() {
-		departmentDAO = new DepartmentDAO();
+		departmentService = new DepartmentService();
 		departmentView = new DepartmentView();
 	}
 	
@@ -25,10 +26,11 @@ public class DepartmentController {
 			int select = sc.nextInt();
 			
 			if(select == 1) {
-				departmentDAO.getList();
+				List<DepartmentDTO> ar = departmentService.getList();
+				departmentView.view(ar);
 			}else if(select == 2) {
-				DepartmentDTO departmentDTO = new DepartmentDTO();
-				departmentDTO = departmentDAO.getDetail();
+				DepartmentDTO departmentDTO = departmentService.getDetail(sc);
+				
 				if(departmentDTO != null) {
 					departmentView.view(departmentDTO);
 				}else {

@@ -3,30 +3,40 @@ package com.root.app.countries;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.root.app.utils.DBConnection;
 
 public class CountryDAO {
 	
-	public void getList() throws Exception {
+	public List<CountryDTO> getList() throws Exception {
 		Connection connection = DBConnection.getConnection();
 		String sql = "SELECT * FROM COUNTRIES ORDER BY COUNTRY_NAME ASC";
 		PreparedStatement st = connection.prepareStatement(sql);
 		ResultSet rs = st.executeQuery();
 		
+		List<CountryDTO> ar = new ArrayList<>();
+		
 		while(rs.next()) {
-			System.out.println(rs.getString("COUNTRY_NAME"));
-			
+			CountryDTO countryDTO = new CountryDTO();
+			countryDTO.setCountry_id(rs.getString("COUNTRY_ID"));
+			countryDTO.setCountry_name(rs.getString("COUNTRY_NAME"));
+			countryDTO.setRegion_id(rs.getInt("REGION_ID"));
+			ar.add(countryDTO);
 		}
 		
 		DBConnection.disConnect(rs, st, connection);
 		
+		return ar;
+		
 	}
 	
-	public CountryDTO getDetail() throws Exception {
+	public CountryDTO getDetail(CountryDTO countryDTO2) throws Exception {
 		Connection connection = DBConnection.getConnection();
-		String sql = "SELECT * FROM COUNTRIES WHERE REGION_ID = 3";
+		String sql = "SELECT * FROM COUNTRIES WHERE COUNTRY_ID = ?";
 		PreparedStatement st = connection.prepareStatement(sql);
+		st.setString(1, countryDTO2.getCountry_id().toUpperCase());
 		ResultSet rs = st.executeQuery();
 		
 		CountryDTO countryDTO = null;

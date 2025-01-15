@@ -1,13 +1,16 @@
 package com.root.app.countries;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class CountryController {
 	
-	private CountryDAO countryDAO;
+	private CountryView countryView;
+	private CountryService countryService;
 	
 	public CountryController() {
-		countryDAO = new CountryDAO();
+		countryView = new CountryView();
+		countryService = new CountryService();
 	}
 	
 	public void start() throws Exception {
@@ -22,11 +25,10 @@ public class CountryController {
 			int select = sc.nextInt();
 
 			if(select == 1) {
-				countryDAO.getList();
+				List<CountryDTO> ar = countryService.getList();
+				countryView.view(ar);
 			}else if(select == 2) {
-				CountryDTO countryDTO = new CountryDTO();
-				countryDTO = countryDAO.getDetail();
-				CountryView countryView = new CountryView();
+				CountryDTO countryDTO = countryService.getDetail(sc);
 				if(countryDTO != null) {
 					countryView.view(countryDTO);
 				}else {

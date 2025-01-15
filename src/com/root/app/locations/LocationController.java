@@ -1,14 +1,18 @@
 package com.root.app.locations;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class LocationController {
 	
-	private LocationDAO locationDAO;
+	private LocationService locationService;
+	private LocationView locationView;
 	
 	public LocationController() {
-		locationDAO = new LocationDAO();
+		locationService = new LocationService();
+		locationView = new LocationView();
 	}
+	
 	
 	
 	public void start() throws Exception{
@@ -24,11 +28,11 @@ public class LocationController {
 			int select = sc.nextInt();
 			
 			if(select == 1) {
-				locationDAO.getList();
+				List<LocationDTO> ar = locationService.getList();
+				locationView.view(ar);
+				
 			}else if(select == 2) {
-				LocationDTO locationDTO = new LocationDTO();
-				locationDTO = locationDAO.getDetail();
-				LocationView locationView = new LocationView();
+				LocationDTO locationDTO = locationService.getDetail(sc);
 				if(locationDTO != null) {
 					locationView.view(locationDTO);
 				}else {

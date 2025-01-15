@@ -23,7 +23,7 @@ public class RegionController {
 			if(select == 1) {
 				regionDAO.getList();
 			}else if(select == 2) {
-				regionDTO = regionDAO.getDetail();
+//				regionDTO = regionDAO.getDetail();
 				if(regionDTO != null) {
 					regionView.view(regionDTO);
 				}else {
