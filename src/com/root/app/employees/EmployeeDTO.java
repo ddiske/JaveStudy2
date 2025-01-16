@@ -2,6 +2,9 @@ package com.root.app.employees;
 
 import java.sql.Date;
 
+import com.root.app.departments.DepartmentDAO;
+import com.root.app.departments.DepartmentDTO;
+
 public class EmployeeDTO {
 	
 	private int employee_id;
@@ -15,11 +18,19 @@ public class EmployeeDTO {
 	private double commission_pct;
 	private int manager_id;
 	private int department_id;
+	// 1:1 관계
+	private DepartmentDTO departmentDTO;
 	
 	
 	
 	
 	
+	public DepartmentDTO getDepartmentDTO() {
+		return departmentDTO;
+	}
+	public void setDepartmentDTO(DepartmentDTO departmentDTO) {
+		this.departmentDTO = departmentDTO;
+	}
 	public int getEmployee_id() {
 		return employee_id;
 	}

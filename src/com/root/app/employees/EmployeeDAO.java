@@ -5,12 +5,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+import com.root.app.departments.DepartmentDTO;
 import com.root.app.utils.DBConnection;
 
 public class EmployeeDAO {
+	
+	
+	
 	
 	public Map<String, Object> getInfo() throws Exception {
 		Map<String, Object> map = new HashMap<>();
@@ -70,7 +76,31 @@ public class EmployeeDAO {
 	}
 	
 	
-	
+	public void getInfo2() throws Exception {
+		Connection connection = DBConnection.getConnection();
+		String sql = "SELECT E.EMPLOYEE_ID, E.SALARY, E.JOB_ID, D.DEPARTMENT_NAME, D.DEPARTMENT_ID "
+				+ "FROM EMPLOYEES E "
+				+ "JOIN DEPARTMENTS D "
+				+ "ON E.DEPARTMENT_ID = D.DEPARTMENT_ID "
+				+ "WHERE E.FIRST_NAME = 'Lex'";
+		PreparedStatement st = connection.prepareStatement(sql);
+		ResultSet rs = st.executeQuery();
+		
+		
+		EmployeeDTO employeeDTO = null;
+		if(rs.next()) {
+			employeeDTO = new EmployeeDTO();
+			employeeDTO.setEmployee_id(rs.getInt("EMPLOYEE_ID"));
+			employeeDTO.setSalary(rs.getDouble("SALARY"));
+			employeeDTO.setJob_id(rs.getString("JOB_ID"));
+			employeeDTO.setDepartmentDTO(new DepartmentDTO());
+			employeeDTO.getDepartmentDTO().setDepartment_name(rs.getString("DEPARTMENT_NAME"));
+			employeeDTO.getDepartmentDTO().setDepartment_id(rs.getInt("DEPARTMENT_ID"));
+		}
+		
+		
+		
+	}
 	
 	
 	

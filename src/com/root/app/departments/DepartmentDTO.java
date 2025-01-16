@@ -1,5 +1,9 @@
 package com.root.app.departments;
 
+import java.util.List;
+
+import com.root.app.employees.EmployeeDTO;
+
 public class DepartmentDTO {
 //	DTO를 선언하는 규칙
 //	모든 멤버변수의 접근 지정자는 private
@@ -13,11 +17,19 @@ public class DepartmentDTO {
 	private String department_name;
 	private int manager_id;
 	private int location_id;
+	// 1:n 관계
+	private List<EmployeeDTO> employees;
 	
 	
 	
 	
 	
+	public List<EmployeeDTO> getEmployees() {
+		return employees;
+	}
+	public void setEmployees(List<EmployeeDTO> employees) {
+		this.employees = employees;
+	}
 	public int getDepartment_id() {
 		return department_id;
 	}
