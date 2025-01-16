@@ -2,7 +2,6 @@ package com.root.app.employees;
 
 import java.sql.Date;
 
-import com.root.app.departments.DepartmentDAO;
 import com.root.app.departments.DepartmentDTO;
 
 public class EmployeeDTO {
