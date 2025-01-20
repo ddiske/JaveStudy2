@@ -105,6 +105,29 @@ public class DepartmentDAO {
 	}
 	
 	
+//	Insert
+	public int add(DepartmentDTO departmentDTO) throws Exception {
+		Connection connection = DBConnection.getConnection();
+		String sql = "INSERT INTO DEPARTMENTS (DEPARTMENT_ID, DEPARTMENT_NAME, MANAGER_ID, LOCATION_ID)"
+				+ "VALUES (DEPARTMENTS_SEQ.NEXTVAL, ?, ?, ?)";
+		PreparedStatement st = connection.prepareStatement(sql);
+		
+		st.setString(1, departmentDTO.getDepartment_name());
+		st.setInt(2, departmentDTO.getDepartment_id());
+		st.setInt(3, departmentDTO.getLocation_id());
+		
+//		최종 전송 (INSERT, UPDATE, DELETE)
+//		결과는 int, 메서드는 st.executeUpdate
+		int result = st.executeUpdate();
+		
+		DBConnection.disConnect(st, connection);
+		
+		return result;
+		
+		
+	}
+	
+	
 	
 
 }
