@@ -1,5 +1,6 @@
 package com.root.app.departments;
 
+import java.lang.ref.PhantomReference;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -121,6 +122,48 @@ public class DepartmentDAO {
 		int result = st.executeUpdate();
 		
 		DBConnection.disConnect(st, connection);
+		
+		return result;
+		
+		
+		
+	}
+	
+	
+	
+//	update
+	public int update(DepartmentDTO departmentDTO) throws Exception {
+//		하나의 부서에 매니저번호 수정
+		Connection connection = DBConnection.getConnection();
+		String sql = "UPDATE DAPARTMENTS SET MANAGER_ID = ?"
+				+ "WHERE DEPARTMENT_ID = ?";
+		PreparedStatement st = connection.prepareStatement(sql);
+		
+		st.setInt(1, departmentDTO.getManager_id());
+		st.setInt(2, departmentDTO.getDepartment_id());
+		
+		int result = st.executeUpdate();
+		
+		DBConnection.disConnect(st, connection);
+		
+		return result;
+		
+	}
+	
+	
+	
+	public int delete(DepartmentDTO departmentDTO) throws Exception {
+//		하나의 부서 삭제
+		Connection connection = DBConnection.getConnection();
+		String sql = "DELETE DEPARTMENTS WHERE DEPARTMENT_ID = ?";
+		PreparedStatement st = connection.prepareStatement(sql);
+		
+		st.setInt(1, departmentDTO.getDepartment_id());
+		
+		int result = st.executeUpdate();
+		
+		DBConnection.disConnect(st, connection);
+		
 		
 		return result;
 		
