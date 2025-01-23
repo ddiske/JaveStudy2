@@ -5,8 +5,8 @@ public class TestMain {
 	public static void main(String[] args) {
 		try {
 			
-//			DBConnectionTest test = new DBConnectionTest();
-//			test.getConnectionTest();
+			DBConnectionTest test = new DBConnectionTest();
+			test.getConnectionTest();
 			
 //			UserTest test = new UserTest();
 //			test.testGetDetail();
@@ -14,8 +14,8 @@ public class TestMain {
 //			ProductTest test = new ProductTest();
 //			test.updateTest();
 			
-			AccountTest test = new AccountTest();
-			test.addTest();
+//			AccountTest test = new AccountTest();
+//			test.addTest();
 			
 			
 			
