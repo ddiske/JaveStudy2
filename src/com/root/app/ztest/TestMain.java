@@ -11,8 +11,11 @@ public class TestMain {
 //			UserTest test = new UserTest();
 //			test.testGetDetail();
 			
-			ProductTest test = new ProductTest();
-			test.updateTest();
+//			ProductTest test = new ProductTest();
+//			test.updateTest();
+			
+			AccountTest test = new AccountTest();
+			test.addTest();
 			
 			
 			
