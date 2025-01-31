@@ -18,7 +18,7 @@ public class AccountService {
 	public int add(AccountDTO accountDTO) throws Exception {
 		
 		// 중복 X
-		// 날짜
+		// 날짜, UUID
 		Calendar calendar = Calendar.getInstance();
 		
 		
